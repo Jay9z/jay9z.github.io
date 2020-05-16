@@ -1,0 +1,29 @@
+---
+layout: post
+title: "最常用的git command"
+date: "2018-02-21 12:51:53 +0800"
+---
+1. git status
+最常用命令，用于确认当前文件编辑状况,再记不清楚哪些文件已被更改的情况下使用。
+1. git add <file>
+1. git comment -m <message (tag)>
+add和comment一起使用，用于创建一个追溯的备份。
+1. git reflog
+打印出，所有可追溯的备份id,id为一连串16进制数字。
+1. git reset --hard <id>
+通过id找回备份
+1. git tag -a <tag> -m <msg>
+使用tag创建一个标记，这个标记自动关联到上一个commit备份上。
+有了标记之后，不仅可以使用reset，还可以使用git checkout <tag> 找回备份。
+1. git log --graph
+打印出所有的commit历史，以及branch关系。
+1. git clone <url>
+下载目标代码仓库至当前文件夹
+1. git remote orgin add <url>
+关联远程代码仓库至本地名称“orgin”（可以随意命名，不必固定为“orgin”），方便以后使用。
+1. git pull -u orgin <branch>
+下载指定版本
+1. git checkout <tag>/ -b <branch>
+切换至指定备份版本
+1. git push -u orgin <branch>
+上传至远程仓库

@@ -1,0 +1,94 @@
+---
+layout: post
+title: "ploymer好像挺不错的"
+date: "2018-01-31 23:23:40 +0800"
+---
+
+- [ ] 准备用ploymer封装一些自己会常用的组件
+
+## 自定义组件的正确套路
+文件名记得加“-”，例如 picture-frame.html。
+定义方法是：在template中定义标签显示效果，在script中通过Ploymer()函数定义标签的属性（proporties）与响应（ready）。
+```
+<link rel="import" href="bower_components/polymer/polymer.html">
+
+<dom-module id='picture-frame'>
+<template>
+    <!-- scoped CSS for this element -->
+    <style>
+      div {
+        display: inline-block;
+        background-color: #ccc;
+        border-radius: 8px;
+        padding: 4px;
+      }
+    </style>
+    <div>
+      <!-- any children are rendered here -->
+      <content></content>
+      <!--注意这里使用了content标签，子组件或者标签将被插入到这里-->
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: "picture-frame",
+    });
+  </script>
+
+</dom-module>
+
+```
+
+## 用自家的组件 :)
+通过link标签导入组件，然后在网页中以id作为标签名使用。
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="picture-frame.html">
+  </head>
+  <body>
+    <picture-frame>
+      <img src="images/p-logo.svg"><!--此处就是讲一个原生的img标签作为子组件插入到picture-frame中去-->
+    </picture-frame>
+  </body>
+</html>
+
+```
+
+
+## “数据绑定”是什么？
+通过 {{ tag_property }} 这个形式将标签的属性引用出来
+
+```
+<link rel="import"
+      href="bower_components/polymer/polymer.html">
+
+<dom-module id="configurable-name-tag">
+
+  <template>
+    <!-- bind to the "owner" property -->
+    This is <b>{{owner}}</b>'s configurable-name-tag element.
+  </template>
+
+  <script>
+    Polymer({
+      is: "configurable-name-tag",
+      properties: {
+        // declare the owner property
+        owner: {
+          type: String,
+          value: "Daniel"  //默认值
+        }
+      }
+    });
+  </script>
+
+</dom-module>
+
+```
+
+[https://segmentfault.com/a/1190000003817298](https://segmentfault.com/a/1190000003817298)
+[https://www.polymer-project.org/2.0/start/quick-tour](https://www.polymer-project.org/2.0/start/quick-tour)

@@ -1,0 +1,25 @@
+---
+layout: post
+title: "自制splunk app打包流程（7.0）"
+date: "2018-04-09 13:25:30 +0800"
+---
+## 安装package toolkit
+>splunk package toolkit就是一些python2.7下的工具包+virtualenv。
+我们通过pip命令，将其安装至virtualenvirtonment 之下。安装完成后，记得 echo $path查看slim工具是否已经添加至$path之中，这样才能保证之后的slim命令工作正常。
+## 打包splunk app
+1. 启动slim环境
+>cd VirtualEnvs/slim
+source bin/activate
+
+1. slim generate‑manifest
+>通过如下命令生成manifest文件，并放置在app根目录下
+slim generate-manifest -o path_of_app/app.manifest path_of_app
+举例如下:
+slim generate-manifest -o /Applications/Splunk/etc/apps/oats_admin/app.manifest /Applications/Splunk/etc/apps/oats_admin
+
+1. slim package
+>通过如下命令生成 打包app
+slim package path_of_app
+
+
+[参照文档](http://dev.splunk.com/view/packaging-toolkit/SP-CAAAE9V)

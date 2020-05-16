@@ -1,0 +1,28 @@
+---
+layout: post
+title: "Caffe2入门"
+date: "2018-04-08 11:08:58 +0800"
+---
+
+## 基本概念
+1. operator
+1. net
+1. blob
+1. workspace
+
+## 从零开始建网络的套路
+1. 准备数据
+1. model_helpler生成一个包含两个网络的对象m
+1. 使用其中参数初始化网络来获得W，b
+W = m.param_init_net.XavierFill(input,output,shape)
+b = m.param_init_net.ConstantFill(input,output,shape)
+1. 使用其中执行网络来建立操作图
+m.net.FC(input,output)
+m.net.Sigmoid(input,output)
+m.net.SoftmaxWithLoss(input,output)
+1.
+m.net.Proto()
+m.param_init_net.Proto()
+
+## 算了还是用mxnet
+还是喜欢mxnet，cafe2还不如cafe建网络方便

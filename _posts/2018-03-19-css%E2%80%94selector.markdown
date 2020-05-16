@@ -1,0 +1,56 @@
+---
+layout: post
+title: "CSS—selector"
+date: "2018-03-19 16:05:29 +0800"
+---
+
+# 简单选择器
+color:#ffffff;
+text-decoration: line-through;
+# 属性选择器
+li[ssss='kkkk']{}  属性ssss为kkkk时，为li元素添加...样式
+
+li[ssss*='kkkk']{} 属性ssss中含有kkkk时，为li元素添加...样式
+
+# 伪类与伪元素
+example 1:
+/* 拥有属性lang并且这个属性值为en-US的类名为“with-currency”里边的td当中
+的最后一个元素添加一个伪类::before*/
+.with-currency[lang="en-US"] td:last-child::before {
+  content: '$';
+}
+
+example 2:
+p::first-line{
+ font-weight: bold;
+}
+
+p::first-letter{
+ font-size: 3em;
+ border: 1px solid black;
+ background: red;
+ display: block;
+ float: left;
+ padding: 2px;
+ margin-right: 4px;
+}
+
+# 组合与多重选择
+组合器
+
+一次使用一个选择器是很有用的，但在某些情况下却可能效率低下。 CSS选择器变得更加有用,当你开始结合他们进行细粒度的选择。CSS有几种方法可以选择元素基于它们如何彼此相关。这些关系与组合子表示如下(A和B代表任何选择器见上图):
+
+Combinators	Select
+A,B	匹配满足A（和/或）B的任意元素（参见下方 同一规则集上的多个选择器）.
+A B	匹配任意元素，满足条件：B是A的后代结点（B是A的子节点，或者A的子节点的子节点）
+A > B	匹配任意元素，满足条件：B是A的直接子节点
+A + B	匹配任意元素，满足条件：B是A的下一个兄弟节点（AB有相同的父结点，并且B紧跟在A的后面）
+A ~ B	匹配任意元素，满足条件：B是A之后的兄弟节点中的任意一个（AB有相同的父节点，B在A之后，但不一定是紧挨着A）
+
+/* 在table当中，所有的th之后的<strong>td</strong> */
+table th + td {
+  text-align: right;
+  border-top-width: 5px;
+  color: white;
+  background: black;
+}
