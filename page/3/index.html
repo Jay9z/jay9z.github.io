@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Note, Thought, Collection, Serial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Note, Thought, Collection, Serial">
+<meta property="og:url" content="jay9z.github.io/page/3/index.html">
+<meta property="og:site_name" content="Note, Thought, Collection, Serial">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Jie Han">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Note, Thought, Collection, Serial" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Note, Thought, Collection, Serial</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="jay9z.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2018-02-24-splunknote" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/24/2018-02-24-splunknote/" class="article-date">
+  <time datetime="2018-02-24T15:18:09.000Z" itemprop="datePublished">2018-02-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/24/2018-02-24-splunknote/">SPLUNK_note for &lt;&lt;implement splunk&gt;&gt;</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>事件用键值对表示字段与值</p>
+<p>搜索的本质是统计字段</p>
+<p>搜索词不区分大小写的；<br>多个搜索词同时出现，表示“and”关系；<br>字段名称区分大小写，但字段的取值不区分。譬如 host=“myhost”<br>索引名称是怎么建立的？</p>
+<p>如何加快搜索<br>保存搜索<br>创建报警 1.</p>
+<ol>
+<li>top命令<br>给出 count 和 percent，简化stats<br>| top host user 和 | top user by host是不同的<br>前者先按host字段的统计数量的按序拆分，再按user字段的统计数量继续按序拆分；<br>后者先按host字段的值按序拆分，再按user字段的统计数量按序拆分。</li>
+</ol>
+<p>| top user by host<br>| top limit=20 host</p>
+<p>| top useother=true otherstr=”others” ip logger<br>userother参数用于累加limit之外的字段信息，otherstr参数用于设置显示关键字</p>
+<ol start="2">
+<li><p>stats命令<br>| stats functions by fileds<br>functions：<br>count, avg(fieldname), max(fieldname)…<br>e.g.  | stats count first(ip) max(_time) as _time by user</p>
+</li>
+<li><p>table命令<br>与stats的区别？table直接取回字段，stats会进行统计</p>
+</li>
+<li><p>chart命令<br>| chart count over user by logger<br>| chart count over logger by user</p>
+</li>
+<li><p>timechart命令<br>| timechart limit=3 usenull=false count by user</p>
+</li>
+<li><p>eval命令<br>有哪些函数呢？</p>
+</li>
+<li><p>rex命令<br>| rex “ip=(?P<subnet>\d+.\d+.\d+).\d+”<br>| rex field=ip “(?P<subnet>\d+.\d+.\d+).\d+”</p>
+</li>
+</ol>
+<p>例子：<br>ip=(?P<subnet>192.168.1).\d+</p>
+<ol start="7">
+<li>bucket<br>span=1h, bins=10<br>建立索引 与 抽取字段<br>抽取字段默认是对 _raw字段进行操作的<br>抽取字段命令的使用：在搜索中使用fieldholder而不是提取器的名称</li>
+</ol>
+<h1 id="post-search"><a href="#post-search" class="headerlink" title="post search"></a>post search</h1><p>search(with a given id)通过命令table或stats过滤出多个指示板共用的field，从而去除重复搜索</p>
+<h1 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h1><h1 id="扩展搜索，都类似与给搜索另起一个名字"><a href="#扩展搜索，都类似与给搜索另起一个名字" class="headerlink" title="扩展搜索，都类似与给搜索另起一个名字"></a>扩展搜索，都类似与给搜索另起一个名字</h1><ol>
+<li><p>标签<br>| tag::tagname</p>
+</li>
+<li><p>事件类型<br>为常用搜索字符串起了一个别名<br>| eventtype= eventname</p>
+</li>
+<li><p>（自动）查找操作<br>将定义文件中的字段也添加的搜索结果中。<br>| lookup fileName columnName<br>e.g.<br>sourcetype=”impl_splunk_gen” | lookup users.csv user | stats count by user city state department</p>
+</li>
+<li><p>宏</p>
+</li>
+<li><p>工作流动作<br>在事件操作中添加而外的搜索功能</p>
+</li>
+</ol>
+<h1 id="定制nav-bar"><a href="#定制nav-bar" class="headerlink" title="定制nav bar"></a>定制nav bar</h1><p>面板的id对应与xml中的name，当我们通过右键修改splunk面板标题之后，其id保持不变，但显示在UI中的菜单项会随“标题”变化。另外通过复制面板产生新面板时，“面板”的默认id会根据其“标题”命名自动生成，需要特别注意。</p>
+<h1 id="配置合并优先级"><a href="#配置合并优先级" class="headerlink" title="配置合并优先级"></a>配置合并优先级</h1><p>  搜索之外的：<br>  system/default<br>  reversed_apps/default<br>  reversed_apps/local<br>  system/local</p>
+<p>  搜素功能：<br>  system/default<br>  system/local<br>  sorted_other_apps/default<br>  sorted_other_apps/local<br>  current_app/default<br>  current_app/local</p>
+<p>How to use python code in splunk</p>
+<ol>
+<li><p>required lib is not available, but depended its depended libs are installed<br>download code from github, and build it as separated lib<br>python setup.py build_ext –inplace –force</p>
+</li>
+<li><p>lib and its depended libs are all not installed</p>
+<h1 id="method-1-use-pip"><a href="#method-1-use-pip" class="headerlink" title="method 1: use pip"></a>method 1: use pip</h1><p>check pip, or install pip by “python setup.py install”/ “python get-pip.py”</p>
+<h1 id="method-2-build-all-source-code"><a href="#method-2-build-all-source-code" class="headerlink" title="method 2: build all source code"></a>method 2: build all source code</h1><h1 id="method-3-pip-install-and-copy-them-from-“site-package”"><a href="#method-3-pip-install-and-copy-them-from-“site-package”" class="headerlink" title="method 3: pip install and copy them from “site-package”"></a>method 3: pip install and copy them from “site-package”</h1></li>
+<li><p>copy package to bin directory(my method)</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/24/2018-02-24-splunknote/" data-id="ckb9ltmld000g0trw37vchbet" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-23-install-splunk-on-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/22/2018-02-23-install-splunk-on-ubuntu/" class="article-date">
+  <time datetime="2018-02-22T17:32:59.000Z" itemprop="datePublished">2018-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/22/2018-02-23-install-splunk-on-ubuntu/">install splunk on Ubuntu</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Download splunk package file .deb<br>then, run following command to install splunk:</p>
+<blockquote>
+<p>sudo dpkg -i Downloads/splunk-6.6.3-e21ee54bc796-linux-2.6-amd64.deb</p>
+</blockquote>
+<p>After installing, start splunk server by this command:</p>
+<blockquote>
+<p>sudo /opt/splunk/bin/splunk start</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/22/2018-02-23-install-splunk-on-ubuntu/" data-id="ckb9ltmlc000f0trw0w6xcbxv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-21-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84git-command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/21/2018-02-21-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84git-command/" class="article-date">
+  <time datetime="2018-02-21T04:51:53.000Z" itemprop="datePublished">2018-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/21/2018-02-21-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84git-command/">最常用的git command</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>git status<br>最常用命令，用于确认当前文件编辑状况,再记不清楚哪些文件已被更改的情况下使用。</li>
+<li>git add <file></li>
+<li>git comment -m &lt;message (tag)&gt;<br>add和comment一起使用，用于创建一个追溯的备份。</li>
+<li>git reflog<br>打印出，所有可追溯的备份id,id为一连串16进制数字。</li>
+<li>git reset –hard <id><br>通过id找回备份</li>
+<li>git tag -a <tag> -m <msg><br>使用tag创建一个标记，这个标记自动关联到上一个commit备份上。<br>有了标记之后，不仅可以使用reset，还可以使用git checkout <tag> 找回备份。</li>
+<li>git log –graph<br>打印出所有的commit历史，以及branch关系。</li>
+<li>git clone <url><br>下载目标代码仓库至当前文件夹</li>
+<li>git remote orgin add <url><br>关联远程代码仓库至本地名称“orgin”（可以随意命名，不必固定为“orgin”），方便以后使用。</li>
+<li>git pull -u orgin <branch><br>下载指定版本</li>
+<li>git checkout <tag>/ -b <branch><br>切换至指定备份版本</li>
+<li>git push -u orgin <branch><br>上传至远程仓库</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/21/2018-02-21-%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84git-command/" data-id="ckb9ltmlb000e0trw5w92ffum" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-10-web-developer-bootcamp-and-bootstrap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/10/2018-02-10-web-developer-bootcamp-and-bootstrap/" class="article-date">
+  <time datetime="2018-02-10T09:12:59.000Z" itemprop="datePublished">2018-02-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/10/2018-02-10-web-developer-bootcamp-and-bootstrap/">web developer bootcamp and bootstrap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="grid-system"><a href="#grid-system" class="headerlink" title="grid system"></a>grid system</h3><ul>
+<li>12 column</li>
+<li>nested grid</li>
+<li>4 class of column</li>
+<li>usually we use 2 class of column for screen size adaptive<br>e.g. <div class="col-md-3 col-sm-6"> </div></li>
+</ul>
+<p>###</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/10/2018-02-10-web-developer-bootcamp-and-bootstrap/" data-id="ckb9ltmla000d0trw5y0t0k5n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-08-web-developer-bootcamp-and-jquery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/08/2018-02-08-web-developer-bootcamp-and-jquery/" class="article-date">
+  <time datetime="2018-02-08T14:02:17.000Z" itemprop="datePublished">2018-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/08/2018-02-08-web-developer-bootcamp-and-jquery/">web developer bootcamp and JQuery</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><ul>
+<li>download js lib there</li>
+<li>or link url to script.src</li>
+</ul>
+<h3 id="element-selection-with-JQuery"><a href="#element-selection-with-JQuery" class="headerlink" title="element selection with JQuery"></a>element selection with JQuery</h3><ul>
+<li>$(…).method()</li>
+<li>always list output</li>
+<li>iteration operation</li>
+<li>get one of elements<br>$(…).last().method<br>$(…).first().method<h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3></li>
+<li>$().css(,)</li>
+<li>style name<br>CSS: camel style attribute name<br>html: c language style attribute name</li>
+<li>$(tag:first-of-type)</li>
+</ul>
+<h3 id="Text-WR"><a href="#Text-WR" class="headerlink" title="Text (WR)"></a>Text (WR)</h3><ul>
+<li>.text() : read textContent</li>
+<li>.text(something) : write something as textContent, it is a more safe operation</li>
+<li>when write, it iterate and give a value to every tag</li>
+</ul>
+<h3 id="Attribute-amp-Value-5851011H-Njie"><a href="#Attribute-amp-Value-5851011H-Njie" class="headerlink" title="Attribute &amp; Value 5851011H@Njie"></a>Attribute &amp; Value 5851011H@Njie</h3><p>e.g.<br>$(img).css({width:”200px”})<br>$(img).attr(“src”):get attribute<br>$(img).attr(“src”,’…jpg’): set attribute<br>$(img).attr(“type”,”checkbox”): set attribute<br>$(input).val(): get value<br>$(input).val(“input text”) : set value</p>
+<h3 id="Class-Objects"><a href="#Class-Objects" class="headerlink" title="Class Objects"></a>Class Objects</h3><p>.addClass()<br>.toggleClass()<br>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/08/2018-02-08-web-developer-bootcamp-and-jquery/" data-id="ckb9ltml9000c0trwbm8th7co" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-06-web-developer-bootcamp-and-dom" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/06/2018-02-06-web-developer-bootcamp-and-dom/" class="article-date">
+  <time datetime="2018-02-06T08:23:26.000Z" itemprop="datePublished">2018-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/06/2018-02-06-web-developer-bootcamp-and-dom/">web developer bootcamp and DOM</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="selection-methods"><a href="#selection-methods" class="headerlink" title="selection methods"></a>selection methods</h3><ul>
+<li>Document property<br>document.url<br>document.title<br>document.head<br>document.body</li>
+<li>Element selector<br>document.getElementById<br>.getElementsByClassName ==&gt;  HTMLCollection<br>.getElementsByTagName ==&gt; HTMLCollection</li>
+<li>CSS-style selector<br>.querySelector(‘#id/.class/tag’)<br>get first element<br>.querySelectorAll(…)<br>get all elements list</li>
+</ul>
+<h3 id="manipulate-style"><a href="#manipulate-style" class="headerlink" title="manipulate style"></a>manipulate style</h3><ol>
+<li><p>query a tag</p>
+</li>
+<li><p>define a class of style:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.cssClass</span><br><span class="line">  &#123;</span><br><span class="line">  color:green</span><br><span class="line">  font-size:20px</span><br><span class="line">  border:1px dash green</span><br><span class="line">  background:white</span><br><span class="line">  margintop:200px</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>execute</p>
+</li>
+</ol>
+<ul>
+<li>tag.classList.toggle(“cssClass”)</li>
+<li>tag.classList.add()</li>
+<li>tag.classList.remove()</li>
+</ul>
+<h3 id="manipulate-content"><a href="#manipulate-content" class="headerlink" title="manipulate content"></a>manipulate content</h3><ul>
+<li>tag.innerHTML = “<h1> good bye </h1>“</li>
+<li>tag.textContent = ‘’</li>
+</ul>
+<h3 id="manipulate-attribute"><a href="#manipulate-attribute" class="headerlink" title="manipulate attribute"></a>manipulate attribute</h3><ul>
+<li>tag.getAttribute(‘href’)</li>
+<li>tag.setAttribute(‘src’,’..’)</li>
+</ul>
+<h3 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h3><ul>
+<li>Event from M</li>
+<li>action: click,change,input</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/06/2018-02-06-web-developer-bootcamp-and-dom/" data-id="ckb9ltml7000b0trw12hzeghv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-06-python3-and-python2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/06/2018-02-06-python3-and-python2/" class="article-date">
+  <time datetime="2018-02-06T02:01:44.000Z" itemprop="datePublished">2018-02-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/06/2018-02-06-python3-and-python2/">python3 and python2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="differences"><a href="#differences" class="headerlink" title="differences"></a>differences</h3><ul>
+<li>reduce</li>
+<li>unicode</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/06/2018-02-06-python3-and-python2/" data-id="ckb9ltml6000a0trw428qcyho" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-05-web-developer-bootcamp-and-js-object" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/05/2018-02-05-web-developer-bootcamp-and-js-object/" class="article-date">
+  <time datetime="2018-02-05T15:56:36.000Z" itemprop="datePublished">2018-02-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/05/2018-02-05-web-developer-bootcamp-and-js-object/">p6: web developer bootcamp and js object</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="object"><a href="#object" class="headerlink" title="object"></a>object</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var person&#x3D;&#123;</span><br><span class="line">  name: &quot;Travis&quot;,</span><br><span class="line">  age: 21,</span><br><span class="line">  city:&quot;LA&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="get-and-set"><a href="#get-and-set" class="headerlink" title="get and set"></a>get and set</h3><ul>
+<li>person.name or person[“name”]</li>
+<li>in some case we can not use “.” to get property value</li>
+</ul>
+<h3 id="object-definition"><a href="#object-definition" class="headerlink" title="object definition"></a>object definition</h3><ul>
+<li>method 1: {}, and .propertyName=value</li>
+<li>method 2: {….}</li>
+<li>method 3: new object() and .propertyName = value</li>
+</ul>
+<h3 id="array-vs-object"><a href="#array-vs-object" class="headerlink" title="array vs object"></a>array vs object</h3><ul>
+<li>order VS. unorder</li>
+<li></li>
+</ul>
+<h3 id="object-method"><a href="#object-method" class="headerlink" title="object method"></a>object method</h3><ul>
+<li>method can be add to object</li>
+<li>enable dynamic function<blockquote>
+<p>e.g. dog.speak(), cat.speak()</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/05/2018-02-05-web-developer-bootcamp-and-js-object/" data-id="ckb9ltml500090trwbms00koi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-05-web-developer-bootcamp-and-js-array" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/04/2018-02-05-web-developer-bootcamp-and-js-array/" class="article-date">
+  <time datetime="2018-02-04T16:22:14.000Z" itemprop="datePublished">2018-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/04/2018-02-05-web-developer-bootcamp-and-js-array/">p5:js array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="array-definition"><a href="#array-definition" class="headerlink" title="array definition"></a>array definition</h3><ul>
+<li>var color =[‘red’,’yellow’,’orange’]</li>
+<li>[]</li>
+<li>new Array()</li>
+<li>can hold array kinds of different data in one array</li>
+<li>can be used like:color[4]=’black’, color[10]= ‘purple’</li>
+<li>color.length</li>
+</ul>
+<h3 id="array-method"><a href="#array-method" class="headerlink" title="array method"></a>array method</h3><ul>
+<li><p>arr.push &amp; pop<br>array works like stack from array end</p>
+</li>
+<li><p>arr.unshift &amp; shift<br>operate at array front; unshift is push operation at the front postion of array</p>
+</li>
+<li><p>arr.indexOf(item)<br>find the index of an item</p>
+</li>
+<li><p>arr.slice(n,m)<br>copy [n,m) items from array</p>
+</li>
+<li><p>arr.forEach(func)<br>func should defined as following:</p>
+<ul>
+<li>1st type<br>function func(element[,index[,arr]]){}<br>arr.forEach(func)</li>
+<li>2nd type<br>arr.forEach(function func(color){})</li>
+</ul>
+</li>
+<li><p>arr.splice(index)</p>
+</li>
+</ul>
+<h3 id="add-array-method"><a href="#add-array-method" class="headerlink" title="add array method"></a>add array method</h3><ul>
+<li>Array.prototype.methodname = function(func_callback){}</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/04/2018-02-05-web-developer-bootcamp-and-js-array/" data-id="ckb9ltml400080trw73sn2r54" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-02-04-web-developer-bootcamp-and-js-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/04/2018-02-04-web-developer-bootcamp-and-js-function/" class="article-date">
+  <time datetime="2018-02-04T15:03:39.000Z" itemprop="datePublished">2018-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/04/2018-02-04-web-developer-bootcamp-and-js-function/">p4: web developer bootcamp and js function</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><ul>
+<li>function<br>eg.function func(var){…;return n;}</li>
+<li>anonymous function</li>
+</ul>
+<h3 id="Something-useful"><a href="#Something-useful" class="headerlink" title="Something useful"></a>Something useful</h3><ul>
+<li>str.replace(/oldchars/g,newchars)</li>
+<li>setInterval(func,mseconds)<ul>
+<li>echo num</li>
+<li>clearInterval(num)</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/02/04/2018-02-04-web-developer-bootcamp-and-js-function/" data-id="ckb9ltml100060trwcrif104l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/23/2020-05-23-use-my-new-keyboard/">2020-05-23 use my new keyboard</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/22/git-type/">git commit explanation</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/17/How-to-set-blog-with-hexo-action/">Set blog with hexo-action</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/17/argparse/">argparse</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/27/image-feature-detection-and-discription/">image feature detection and description</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Jie Han<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

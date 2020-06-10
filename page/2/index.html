@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Note, Thought, Collection, Serial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Note, Thought, Collection, Serial">
+<meta property="og:url" content="jay9z.github.io/page/2/index.html">
+<meta property="og:site_name" content="Note, Thought, Collection, Serial">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Jie Han">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Note, Thought, Collection, Serial" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Note, Thought, Collection, Serial</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="jay9z.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2018-12-02-jekyll-quick-start" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/02/2018-12-02-jekyll-quick-start/" class="article-date">
+  <time datetime="2018-12-02T05:36:14.000Z" itemprop="datePublished">2018-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/02/2018-12-02-jekyll-quick-start/">jekyll quick start</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="install-jekyll"><a href="#install-jekyll" class="headerlink" title="install jekyll"></a>install jekyll</h2><p>~ $ gem install bundler jekyll</p>
+<h2 id="init-a-jekyll-site-folder"><a href="#init-a-jekyll-site-folder" class="headerlink" title="init a jekyll-site/folder"></a>init a jekyll-site/folder</h2><p>~ $ jekyll new my-awesome-site<br>~ $ cd my-awesome-site</p>
+<h2 id="start-local-website"><a href="#start-local-website" class="headerlink" title="start local website"></a>start local website</h2><p>~/my-awesome-site $ bundle exec jekyll serve<br>=&gt; Now browse to <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/12/02/2018-12-02-jekyll-quick-start/" data-id="ckb9ltmlq000w0trw3ckwdgxw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-04-18-sphinx-starter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/18/2018-04-18-sphinx-starter/" class="article-date">
+  <time datetime="2018-04-18T06:17:23.000Z" itemprop="datePublished">2018-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/18/2018-04-18-sphinx-starter/">sphinx starter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>install sphinx</p>
+<blockquote>
+<p>it can be installed with several different kinds of method, like:</p>
+</blockquote>
+<ol>
+<li>apt-get install ..</li>
+<li>pip install ..</li>
+<li>anaconda environment tool</li>
+</ol>
+</li>
+<li><p>create configuration frame work</p>
+<ol>
+<li>quick method with command ‘sphinx-quickstart’</li>
+</ol>
+</li>
+<li><p>generate rst file manually</p>
+<ol>
+<li>sphinx-apidoc [options] -o <outputdir> <sourcedir> [excluded_sourcedir,]</li>
+</ol>
+</li>
+<li><p>theme update(optional)</p>
+<blockquote>
+<p>step 1. pip install sphinx_rtd_theme<br>step 2. import sphinx_rtd_theme<br>step 3. html_theme = “sphinx_rtd_theme”<br>step 4. html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]</p>
+</blockquote>
+</li>
+<li><p>generate html document</p>
+<blockquote>
+<p>change directory to outputdir, and run command</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/04/18/2018-04-18-sphinx-starter/" data-id="ckb9ltmlk000o0trwd6sccjk4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-04-10-jupyter-notebook-remote-connection-setting" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/10/2018-04-10-jupyter-notebook-remote-connection-setting/" class="article-date">
+  <time datetime="2018-04-10T03:16:05.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/10/2018-04-10-jupyter-notebook-remote-connection-setting/">Jupyter Notebook remote connection setting</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>generate sha1 password<blockquote>
+<ul>
+<li>$from notebook.auth import passwd</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>$passwd()</li>
+</ul>
+<ol start="2">
+<li>update config file<blockquote>
+<ul>
+<li>$jupyter notebook –generate-config</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>$vim ~/.jupyter/jupyter_notebook_config.py</li>
+<li>add following lines:<ul>
+<li>c.NotebookApp.ip=’*’</li>
+<li>c.NotebookApp.password = u’sha:ce…刚才复制的那个密文’</li>
+<li>c.NotebookApp.open_browser = False</li>
+<li>c.NotebookApp.port =8888 #随便指定一个端口</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>launch notebook at a selected folder<blockquote>
+<ul>
+<li>$ cd selected_path_offolder</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>$jupyter notebook</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/04/10/2018-04-10-jupyter-notebook-remote-connection-setting/" data-id="ckb9ltmlj000n0trw5b5metls" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-04-09-%E8%87%AA%E5%88%B6splunk-app%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%EF%BC%8870%EF%BC%89" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/09/2018-04-09-%E8%87%AA%E5%88%B6splunk-app%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%EF%BC%8870%EF%BC%89/" class="article-date">
+  <time datetime="2018-04-09T05:25:30.000Z" itemprop="datePublished">2018-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/09/2018-04-09-%E8%87%AA%E5%88%B6splunk-app%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%EF%BC%8870%EF%BC%89/">自制splunk app打包流程（7.0）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="安装package-toolkit"><a href="#安装package-toolkit" class="headerlink" title="安装package toolkit"></a>安装package toolkit</h2><blockquote>
+<p>splunk package toolkit就是一些python2.7下的工具包+virtualenv。<br>我们通过pip命令，将其安装至virtualenvirtonment 之下。安装完成后，记得 echo $path查看slim工具是否已经添加至$path之中，这样才能保证之后的slim命令工作正常。</p>
+</blockquote>
+<h2 id="打包splunk-app"><a href="#打包splunk-app" class="headerlink" title="打包splunk app"></a>打包splunk app</h2><ol>
+<li><p>启动slim环境</p>
+<blockquote>
+<p>cd VirtualEnvs/slim<br>source bin/activate</p>
+</blockquote>
+</li>
+<li><p>slim generate‑manifest</p>
+<blockquote>
+<p>通过如下命令生成manifest文件，并放置在app根目录下<br>slim generate-manifest -o path_of_app/app.manifest path_of_app<br>举例如下:<br>slim generate-manifest -o /Applications/Splunk/etc/apps/oats_admin/app.manifest /Applications/Splunk/etc/apps/oats_admin</p>
+</blockquote>
+</li>
+<li><p>slim package</p>
+<blockquote>
+<p>通过如下命令生成 打包app<br>slim package path_of_app</p>
+</blockquote>
+</li>
+</ol>
+<p><a href="http://dev.splunk.com/view/packaging-toolkit/SP-CAAAE9V" target="_blank" rel="noopener">参照文档</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/04/09/2018-04-09-%E8%87%AA%E5%88%B6splunk-app%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B%EF%BC%8870%EF%BC%89/" data-id="ckb9ltmlj000m0trw44k05dmj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-04-09-testing-of-jsw" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/09/2018-04-09-testing-of-jsw/" class="article-date">
+  <time datetime="2018-04-09T05:18:52.000Z" itemprop="datePublished">2018-04-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/09/2018-04-09-testing-of-jsw/">testing of jsw</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="“tb”-connections"><a href="#“tb”-connections" class="headerlink" title="“tb” connections"></a>“tb” connections</h2><p>match (n:pin)-[rel]-&gt;(n1:pin)<br>where n.pinType=”tb” or n1.pinType=’tb’<br>return n.fullName,rel.sequence,rel.chapter_details,n1.fullName<br>order by rel.sequence</p>
+<h2 id="all-connections"><a href="#all-connections" class="headerlink" title="all connections"></a>all connections</h2><p>match (n:pin)-[rel]-&gt;(n1:pin)<br>return n.fullName,rel.sequence,rel.chapter_details,n1.fullName<br>order by rel.sequence</p>
+<h2 id="all-connections-of-insulation-type"><a href="#all-connections-of-insulation-type" class="headerlink" title="all connections of insulation type"></a>all connections of insulation type</h2><p>match (n:pin)-[rel:insulation]-&gt;(n1:pin)<br>return n.fullName,rel.sequence,rel.chapter,n1.fullName<br>order by rel.sequence</p>
+<h2 id="all-connections-of-continuity-type"><a href="#all-connections-of-continuity-type" class="headerlink" title="all connections of continuity type"></a>all connections of continuity type</h2><p>match (n:pin)-[rel:continuity]-&gt;(n1:pin)<br>return n.fullName,rel.sequence,rel.chapter,n1.fullName<br>order by rel.sequence</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/04/09/2018-04-09-testing-of-jsw/" data-id="ckb9ltmll000p0trwd9q14ua2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-04-08-anaconda%E5%AE%89%E8%A3%85package" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/08/2018-04-08-anaconda%E5%AE%89%E8%A3%85package/" class="article-date">
+  <time datetime="2018-04-08T13:34:15.000Z" itemprop="datePublished">2018-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/08/2018-04-08-anaconda%E5%AE%89%E8%A3%85package/">通过anaconda cloud安装package</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>搜索关键字</li>
+<li>默认安装到“root”环境之下</li>
+<li>如果需要指定环境名，在安装命令之后附加  -n env_name</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/04/08/2018-04-08-anaconda%E5%AE%89%E8%A3%85package/" data-id="ckb9ltmlg000k0trw75ky6dec" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-04-08-caffe2%E5%85%A5%E9%97%A8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/08/2018-04-08-caffe2%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2018-04-08T03:08:58.000Z" itemprop="datePublished">2018-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/08/2018-04-08-caffe2%E5%85%A5%E9%97%A8/">Caffe2入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>operator</li>
+<li>net</li>
+<li>blob</li>
+<li>workspace</li>
+</ol>
+<h2 id="从零开始建网络的套路"><a href="#从零开始建网络的套路" class="headerlink" title="从零开始建网络的套路"></a>从零开始建网络的套路</h2><ol>
+<li>准备数据</li>
+<li>model_helpler生成一个包含两个网络的对象m</li>
+<li>使用其中参数初始化网络来获得W，b<br>W = m.param_init_net.XavierFill(input,output,shape)<br>b = m.param_init_net.ConstantFill(input,output,shape)</li>
+<li>使用其中执行网络来建立操作图<br>m.net.FC(input,output)<br>m.net.Sigmoid(input,output)<br>m.net.SoftmaxWithLoss(input,output)</li>
+<li>m.net.Proto()<br>m.param_init_net.Proto()</li>
+</ol>
+<h2 id="算了还是用mxnet"><a href="#算了还是用mxnet" class="headerlink" title="算了还是用mxnet"></a>算了还是用mxnet</h2><p>还是喜欢mxnet，cafe2还不如cafe建网络方便</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/04/08/2018-04-08-caffe2%E5%85%A5%E9%97%A8/" data-id="ckb9ltmlh000l0trw7zpk2ayx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-03-21-vim-plugin-install-by-vundle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/21/2018-03-21-vim-plugin-install-by-vundle/" class="article-date">
+  <time datetime="2018-03-21T14:23:08.000Z" itemprop="datePublished">2018-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/21/2018-03-21-vim-plugin-install-by-vundle/">vim plugin install by Pathogen.vim</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>git Pathogen</li>
+<li>create ~/.vimrc and put some script from homepage</li>
+<li>find intresting plugins and git them to directory ~/.vim/bundle</li>
+<li>put setting lines of plugins into .vimrc respectively.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/03/21/2018-03-21-vim-plugin-install-by-vundle/" data-id="ckb9ltmlg000j0trwf9yr4tx0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-03-21-cssdomhtml%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/21/2018-03-21-cssdomhtml%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9/" class="article-date">
+  <time datetime="2018-03-21T00:58:23.000Z" itemprop="datePublished">2018-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/21/2018-03-21-cssdomhtml%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9/">css,dom,html属性名的异同点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/03/21/2018-03-21-cssdomhtml%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9/" data-id="ckb9ltmlf000i0trwd4j5fj3a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2018-03-19-css%E2%80%94selector" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/19/2018-03-19-css%E2%80%94selector/" class="article-date">
+  <time datetime="2018-03-19T08:05:29.000Z" itemprop="datePublished">2018-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/2018-03-19-css%E2%80%94selector/">CSS—selector</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简单选择器"><a href="#简单选择器" class="headerlink" title="简单选择器"></a>简单选择器</h1><p>color:#ffffff;<br>text-decoration: line-through;</p>
+<h1 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h1><p>li[ssss=’kkkk’]{}  属性ssss为kkkk时，为li元素添加…样式</p>
+<p>li[ssss*=’kkkk’]{} 属性ssss中含有kkkk时，为li元素添加…样式</p>
+<h1 id="伪类与伪元素"><a href="#伪类与伪元素" class="headerlink" title="伪类与伪元素"></a>伪类与伪元素</h1><p>example 1:<br>/* 拥有属性lang并且这个属性值为en-US的类名为“with-currency”里边的td当中<br>的最后一个元素添加一个伪类::before*/<br>.with-currency[lang=”en-US”] td:last-child::before {<br>  content: ‘$’;<br>}</p>
+<p>example 2:<br>p::first-line{<br> font-weight: bold;<br>}</p>
+<p>p::first-letter{<br> font-size: 3em;<br> border: 1px solid black;<br> background: red;<br> display: block;<br> float: left;<br> padding: 2px;<br> margin-right: 4px;<br>}</p>
+<h1 id="组合与多重选择"><a href="#组合与多重选择" class="headerlink" title="组合与多重选择"></a>组合与多重选择</h1><p>组合器</p>
+<p>一次使用一个选择器是很有用的，但在某些情况下却可能效率低下。 CSS选择器变得更加有用,当你开始结合他们进行细粒度的选择。CSS有几种方法可以选择元素基于它们如何彼此相关。这些关系与组合子表示如下(A和B代表任何选择器见上图):</p>
+<p>Combinators    Select<br>A,B    匹配满足A（和/或）B的任意元素（参见下方 同一规则集上的多个选择器）.<br>A B    匹配任意元素，满足条件：B是A的后代结点（B是A的子节点，或者A的子节点的子节点）<br>A &gt; B    匹配任意元素，满足条件：B是A的直接子节点<br>A + B    匹配任意元素，满足条件：B是A的下一个兄弟节点（AB有相同的父结点，并且B紧跟在A的后面）<br>A ~ B    匹配任意元素，满足条件：B是A之后的兄弟节点中的任意一个（AB有相同的父节点，B在A之后，但不一定是紧挨着A）</p>
+<p>/* 在table当中，所有的th之后的<strong>td</strong> */<br>table th + td {<br>  text-align: right;<br>  border-top-width: 5px;<br>  color: white;<br>  background: black;<br>}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2018/03/19/2018-03-19-css%E2%80%94selector/" data-id="ckb9ltmle000h0trwfks0bnhm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/23/2020-05-23-use-my-new-keyboard/">2020-05-23 use my new keyboard</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/22/git-type/">git commit explanation</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/17/How-to-set-blog-with-hexo-action/">Set blog with hexo-action</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/17/argparse/">argparse</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/27/image-feature-detection-and-discription/">image feature detection and description</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Jie Han<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

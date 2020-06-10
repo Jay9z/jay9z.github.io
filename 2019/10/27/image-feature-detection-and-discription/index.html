@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>image feature detection and description | Note, Thought, Collection, Serial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="#这是一个好时代，也是一个坏时代。现如今，我们有如此之多的工具可以使用，很多时候我们不需要研究算法和编写底层代码，”调个包”就可以快速的获得不错结果；渐渐的已经失去学习基本原理并独立探究问题解决方法的勇气与耐心。 #这将是一篇读opencv源代码，并思考如何有效运用所提供函数的心得笔记 ##Concepts of feature feature detectioncomparing with fl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="image feature detection and description">
+<meta property="og:url" content="jay9z.github.io/2019/10/27/image-feature-detection-and-discription/index.html">
+<meta property="og:site_name" content="Note, Thought, Collection, Serial">
+<meta property="og:description" content="#这是一个好时代，也是一个坏时代。现如今，我们有如此之多的工具可以使用，很多时候我们不需要研究算法和编写底层代码，”调个包”就可以快速的获得不错结果；渐渐的已经失去学习基本原理并独立探究问题解决方法的勇气与耐心。 #这将是一篇读opencv源代码，并思考如何有效运用所提供函数的心得笔记 ##Concepts of feature feature detectioncomparing with fl">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-27T20:52:33.000Z">
+<meta property="article:modified_time" content="2020-06-10T17:05:32.635Z">
+<meta property="article:author" content="Jie Han">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Note, Thought, Collection, Serial" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Note, Thought, Collection, Serial</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="jay9z.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-image-feature-detection-and-discription" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/27/image-feature-detection-and-discription/" class="article-date">
+  <time datetime="2019-10-27T20:52:33.000Z" itemprop="datePublished">2019-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      image feature detection and description
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#这是一个好时代，也是一个坏时代。现如今，我们有如此之多的工具可以使用，很多时候我们不需要研究算法和编写底层代码，”调个包”就可以快速的获得不错结果；渐渐的已经失去学习基本原理并独立探究问题解决方法的勇气与耐心。</p>
+<p>#这将是一篇读opencv源代码，并思考如何有效运用所提供函数的心得笔记</p>
+<p>##Concepts of feature</p>
+<h3 id="feature-detection"><a href="#feature-detection" class="headerlink" title="feature detection"></a>feature detection</h3><p>comparing with flat surfaces and edges，corners and blobs are good features</p>
+<h3 id="feature-description"><a href="#feature-description" class="headerlink" title="feature description"></a>feature description</h3><p>a way to describe the region around features</p>
+<p>##Harris Corner</p>
+<p>##Reference</p>
+<ol>
+<li><a href="https://docs.opencv.org/trunk/db/d27/tutorial_py_table_of_contents_feature2d.html" target="_blank" rel="noopener">opencv feature detection and description</a></li>
+<li><a href="https://www.cis.rit.edu/~cnspci/references/dip/feature_extraction/harris1988.pdf" target="_blank" rel="noopener">a combined corner and edge detector</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="jay9z.github.io/2019/10/27/image-feature-detection-and-discription/" data-id="ckb9ltmmh00150trw8suwdskh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/17/argparse/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          argparse
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/10/activity-detection/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">activity detection</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/23/2020-05-23-use-my-new-keyboard/">2020-05-23 use my new keyboard</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/22/git-type/">git commit explanation</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/17/How-to-set-blog-with-hexo-action/">Set blog with hexo-action</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/17/argparse/">argparse</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/27/image-feature-detection-and-discription/">image feature detection and description</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Jie Han<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
